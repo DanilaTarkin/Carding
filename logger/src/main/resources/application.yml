@@ -1,0 +1,10 @@
+server:
+  port: 8084
+
+service:
+  name: logger
+  description: Logger REST microservice
+  address: host.docker.internal:8084
+
+  network-name: network
+  network-address: host.docker.internal:8083

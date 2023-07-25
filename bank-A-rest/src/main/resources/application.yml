@@ -1,0 +1,13 @@
+server:
+  port: 8081
+
+service:
+  name: A
+  description: Bank A REST microservice
+  address: host.docker.internal:8081
+
+  network-name: network
+  network-address: host.docker.internal:8083
+
+  logger-name: logger
+  logger-address: host.docker.internal:8084

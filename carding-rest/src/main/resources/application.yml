@@ -1,0 +1,13 @@
+server:
+  port: 8080
+
+service:
+  name: carding-rest
+  description: Carding REST microservice
+  address: host.docker.internal:8080
+
+  network-name: network
+  network-address: host.docker.internal:8083
+
+  logger-name: logger
+  logger-address: host.docker.internal:8084

@@ -1,0 +1,59 @@
+version: "3"
+
+name: carding
+
+services:
+  # СЕРВИС СЕТИ
+  network:
+    container_name: Network
+    build: ./network
+    ports:
+      - "8083:8083"
+
+  # СЕРВИС ЛОГИРОВАНИЯ
+  logger:
+    container_name: Logger
+    build: ./logger
+    depends_on:
+      - network
+    ports:
+      - "8084:8084"
+
+  # ЭКРАН ЛОГИРОВАНИЯ
+  carding-ui:
+    container_name: Carding-UI
+    build: ./carding-ui
+    depends_on:
+      - logger
+    ports:
+      - "3000:3000"
+
+  # СЕРВИС БАНКА А
+  bank-a-rest:
+    container_name: Bank-A-REST
+    build: ./bank-a-rest
+    depends_on:
+      - network
+      - logger
+    ports:
+      - "8081:8081"
+
+  # СЕРВИС БАНКА Б
+  bank-b-rest:
+    container_name: Bank-B-REST
+    build: ./bank-b-rest
+    depends_on:
+      - network
+      - logger
+    ports:
+      - "8082:8082"
+
+  # СЕРВИС КАРДИНГА РЕСТ
+  carding-rest:
+    container_name: Carding-REST
+    build: ./carding-rest
+    depends_on:
+      - network
+      - logger
+    ports:
+      - "8080:8080"
